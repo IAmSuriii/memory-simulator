@@ -34,7 +34,7 @@ Memory allocation and deallocation operations update this simulated layout by sp
 - No concurrent processes are simulated; memory requests are handled sequentially.
 
 ### Memory Representation Diagram
-
+```
 +--------------------------------------------------+
 | Physical Memory |
 +--------------------------------------------------+
@@ -42,9 +42,7 @@ Memory allocation and deallocation operations update this simulated layout by sp
 +--------------------------------------------------+
 | Used | Used | Free | Used |
 +--------------------------------------------------+
-
-vbnet
-Copy code
+```
 
 Each block stores metadata such as:
 
@@ -103,20 +101,18 @@ The allocator is accessed through a command-line interface supporting operations
 - Statistics reporting
 
 ### Allocation Strategy Diagram
-
+```
 Free Memory Blocks
 +--------+------------+----------+
 | Free | Free | Free |
 +--------+------------+----------+
-
+```
 Request Size = X
 
 First Fit -> selects first suitable block
 Best Fit -> selects smallest suitable block
 Worst Fit -> selects largest suitable block
 
-vbnet
-Copy code
 
 ---
 
@@ -164,7 +160,7 @@ The buddy allocator is implemented as a separate module and is not integrated in
 The virtual memory simulation operates on fixed-size frames and does not require direct interaction with the buddy allocator.
 
 ### Buddy System Diagram
-
+```
 Initial Block (1024)
 |
 v
@@ -175,9 +171,7 @@ Split
 Split
 /
 256 256
-
-vbnet
-Copy code
+```
 
 ---
 
@@ -214,8 +208,7 @@ When a new block is inserted, it automatically replaces the existing entry.
 
 ### Cache Hierarchy Diagram
 
-lua
-Copy code
+```
           CPU
            |
            v
@@ -232,8 +225,7 @@ Copy code
        L2 Miss
            v
      Main Memory
-yaml
-Copy code
+```
 
 ---
 
@@ -258,7 +250,7 @@ Each page table entry stores:
 - Valid bit indicating presence in memory
 
 ### Virtual Memory Diagram
-
+```
 Virtual Address
 |
 v
@@ -277,9 +269,8 @@ Physical Memory (Frames)
 +-----+-----+-----+-----+
 | F0 | F1 | F2 | F3 |
 +-----+-----+-----+-----+
+```
 
-css
-Copy code
 
 ### Page Replacement Policy
 
@@ -300,7 +291,7 @@ The final integration demonstrates the correct operating system memory access pa
 - The physical address is passed to the cache hierarchy.
 
 ### Integration Diagram
-
+```
 Virtual Address
 |
 v
@@ -325,8 +316,7 @@ L2 Miss
 v
 Main Memory
 
-yaml
-Copy code
+```
 
 Cache accesses always occur after address translation, matching real OS behavior.
 
